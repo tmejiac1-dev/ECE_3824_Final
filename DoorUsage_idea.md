@@ -25,6 +25,8 @@ The time of each event will be recorded.
 - Determine busy times of the day
 - Enable simple notifications based on door usage data
 - Estimate building usage
+- Collecting both Person count and Timestamp allows us to interpret
+  the data in many ways.
 
 ---
 
@@ -47,7 +49,18 @@ Provides power for ESP32 and sensors.
 Used for wiring the system.
 
 ---
+## Backend
+The backend will be responsible for receiving the data from the ESP32 and
+storing it in a cloud database.
 
+### How it works
+- When the IR sensor detects a person passing thorugh the door, the ESP32
+  will then send a JSON file to the cloud server and increment the person
+  count.
+- The server will receive the data and will store it in a MongoDB database
+- Each transport of data or JSON file will have the follwing: door ID, updated
+  count, and timestamp.
+  
 ## Frontend
 
 ### Dashboard
@@ -61,6 +74,8 @@ Used for wiring the system.
 
 - Door usage history (daily or weekly graphs)
 - Alerts when the count exceeds a threshold per hour
+- Other meta-data such as: average count per doorway (per day, week, month), most popular doorway,
+  highest and lowest count per hour of each, etc.
 - Display nearby information such as food trucks, shops, and transportation
 
 ---
