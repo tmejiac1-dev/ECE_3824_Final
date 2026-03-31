@@ -1,5 +1,4 @@
 # environment variables and secrets
-secrets.h
 .env/
 *.key
 # esp32 build files
